@@ -3,6 +3,9 @@ import numpy as np
 from arch import arch_model
 import pandas_ta
 import yfinance as yf
+import statsmodels.api as sm
+import pandas_datareader.data as web
+from statsmodels.regression.rolling import RollingOLS
 
 #get SP500 data
 def getdata():
@@ -59,3 +62,41 @@ data['macd'] = data.groupby(level=1, group_keys=False)['Adj Close'].apply(comput
 #compute dollar volume
 data['dollar_volume'] = (data['Adj Close']*data['Volume'])/1e6
 
+def calculate_returns(data):
+    outlier_cutoff = 0.005
+    lags = [1, 2, 3, 6, 9, 12]
+    for lag in lags:
+        data[f'return_{lag}m'] = (data['Adj Close'].pct_change(lag).pipe(lambda x: x.clip(lower=x.quantile(outlier_cutoff), upper=x.quantile(1-outlier_cutoff))).add(1).pow(1/lag).sub(1))
+    return data
+    
+    
+data = data.groupby(level=1, group_keys=False).apply(calculate_returns).dropna()
+
+#Introduce Fama-French data to estimate asset exposure to common risk factors
+#Namely market risk, size, value, operating profitability, and investment
+factor_data = web.DataReader('F-F_Research_Data_5_Factors_2x3','famafrench', start='2010')[0].drop('RF', axis=1)
+
+factor_data.index = factor_data.index.to_timestamp()
+factor_data = factor_data.resample('M').last().div(100)
+factor_data.index.name = 'date'
+factor_data = factor_data.join(data['return_1m']).sort_index()
+
+#filter stocks with less than 10 months of data
+observations = factor_data.groupby(level=1).size()
+valid_stocks = observations[observations >= 10]
+factor_data = factor_data[factor_data.index.get_level_values('ticker').isin(valid_stocks.index)]
+
+# Calculate betas using Rolling OLS
+betas = (factor_data.groupby(level=1,
+                            group_keys=False).apply(lambda x: RollingOLS(endog=x['return_1m'], 
+                            exog=sm.add_constant(x.drop('return_1m', axis=1)), window=min(24, 
+                            x.shape[0]),min_nobs=len(x.columns)+1)
+         .fit(params_only=True)
+         .params
+         .drop('const', axis=1)))
+
+#append the risk factors to SP500 data
+factors = ['Mkt-RF', 'SMB', 'HML', 'RMW', 'CMA']
+data = (data.join(betas.groupby('ticker').shift()))
+data.loc[:, factors] = data.groupby('ticker', group_keys=False)[factors].apply(lambda x: x.fillna(x.mean()))
+data = data.drop('adj close', axis=1).dropna()
