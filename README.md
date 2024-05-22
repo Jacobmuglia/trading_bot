@@ -1,7 +1,36 @@
+<a name="readme-top"></a>
+
+ <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#parameters-used-to-optimize-model">Parameters</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  </ol>
+
 About the project
+
+
 
 ![Sp500 vs unsupervised learning](images/SP500.png)
 
+
+<!-- PARAMETERS -->
 ## Parameters Used to Optimize Model
 
 ### GARCH (Generalized Autoregressive Conditional Heteroskedasticity)
@@ -55,15 +84,9 @@ Bollinger Bands are a technical analysis tool introduced by John Bollinger. They
  
  Higher ATR values indicate greater price volatility, while lower values suggest less volatility. Traders use ATR to gauge the volatility of an asset. Higher ATR values may indicate potential trading opportunities for strategies that capitalize on volatility, such as trend-following or breakout trading.
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-getting started
-  ```sh
-  npm install pandas, numpy, matplotlib, statsmodels, pandas_datareader, datetime, yfinance, sklearn, PyPortfolioOpt
-  ```
-
-For paper trading, an API key from ALPACAS is required
-https://alpaca.markets/
 
 usage
 
