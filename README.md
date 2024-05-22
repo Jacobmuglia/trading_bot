@@ -1,7 +1,7 @@
 About the project
 
 
-![Sp500 vs unsupervised learning](images\SP500.png)
+![Sp500 vs unsupervised learning](images/SP500.png)
 
 
 ## GARCH (Generalized Autoregressive Conditional Heteroskedasticity)
