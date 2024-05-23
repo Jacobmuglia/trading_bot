@@ -56,7 +56,7 @@ The purpose of this project is to use unsupervised machine learning in python to
 
    - By inspection, we can see that cluster 3 is most likely to outperform. We will select this basket of stocks for our strategy: 
 
-![KMeans Clustering](images/MonthlyCusters.png)
+![KMeans Clustering](images/MonthlyClusters.png)
 
 8. **Visualize Portfolio returns and compare to SP500 returns**:
    - Visualize the returns of the constructed portfolios over time.
@@ -66,9 +66,7 @@ The purpose of this project is to use unsupervised machine learning in python to
 
 9. **Build a trading bot to paper trade with these results**:
    - Develop a trading bot that leverages the analyzed data and portfolio strategies to paper trade in simulated market conditions in Alpaca.
-   - Test the trading bot's performance against historical data and refine its strategies accordingly.
-
-![Sp500 vs unsupervised learning](images/SP500.png)   
+   - Test the trading bot's performance against historical data and refine its strategies accordingly.  
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
