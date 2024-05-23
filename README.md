@@ -2,17 +2,24 @@
 
  <summary>Table of Contents</summary>
   <ol>
-    <li><a href="#about-the-project">About The Project</a></li>
     <li><a href="#getting-started">Getting Started</a></li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
+    <li><a href="#about-the-project">About The Project</a></li>
+    <li><a href="#parameters">Parameters</a></li>
   </ol>
 
-About the project
+<!-- GETTING STARTED -->
+# Getting Started
+1. Get a free API Key at [https://alpaca.markets/](https://alpaca.markets/)
+2. Clone the repo
+   ```sh
+   git clone https://github.com/jacobmuglia/trading_bot.git
+   ```
+3. Install the dependancies
+   ```sh
+   npm install pandas, numpy, matplotlib, statsmodels, pandas_datareader, datetime, yfinance, sklearn, PyPortfolioOpt
+   ```
+<!-- ABOUT THE PROJECT -->
+# About the project
 
 ![Sp500 vs unsupervised learning](images/SP500.png)
 
@@ -50,6 +57,9 @@ The purpose of this project is to use unsupervised machine learning in python to
    - Develop a trading bot that leverages the analyzed data and portfolio strategies to paper trade in simulated market conditions in Alpaca.
    - Test the trading bot's performance against historical data and refine its strategies accordingly.
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- PARAMETERS -->
 ## Parameters Used to Optimize Model
 
 ### GARCH (Generalized Autoregressive Conditional Heteroskedasticity)
