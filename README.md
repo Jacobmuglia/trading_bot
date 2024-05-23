@@ -1,11 +1,13 @@
 <a name="readme-top"></a>
 
+<details>
  <summary>Table of Contents</summary>
   <ol>
     <li><a href="#getting-started">Getting Started</a></li>
     <li><a href="#about-the-project">About The Project</a></li>
     <li><a href="#parameters">Parameters</a></li>
   </ol>
+</details>
 
 <!-- GETTING STARTED -->
 # Getting Started
