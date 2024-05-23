@@ -2,19 +2,8 @@
 
  <summary>Table of Contents</summary>
   <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#parameters-used-to-optimize-model">Parameters</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
+    <li><a href="#about-the-project">About The Project</a></li>
+    <li><a href="#getting-started">Getting Started</a></li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
@@ -25,12 +14,42 @@
 
 About the project
 
-
-
 ![Sp500 vs unsupervised learning](images/SP500.png)
 
+The purpose of this project is to use unsupervised machine learning in python to generate a trading strategy. This strategy will be backtested and used to trade with a paper-trading brokerage acount.
 
-<!-- PARAMETERS -->
+1. **Download/Load SP500 stocks prices data**:
+   - Utilize Yahoo Finance API to download stock price data for SP500 stocks.
+
+2. **Calculate different features and indicators on each stock**:
+   - Compute features such as moving averages, relative strength index (RSI), GARCH volatility, MACD, to analyze each stock's performance.
+
+3. **Aggregate on monthly level and filter top 150 most liquid stocks**:
+   - Aggregate the daily data into monthly data and filter out the top 150 most liquid stocks based on metrics like average daily trading volume.
+
+4. **Calculate Monthly Returns for different time-horizons**:
+   - Calculate monthly returns for each stock over different time horizons (e.g., 1 month, 3 months, 6 months, etc.).
+
+5. **Download Fama-French Factors and Calculate Rolling Factor Betas**:
+   - Download Fama-French factors (market risk premium, size, value, and momentum) from the Kenneth R. French Data Library.
+   - Calculate rolling factor betas for each stock using regression analysis against the Fama-French factors.
+
+6. **For each month fit a K-Means Clustering Algorithm**:
+   - Employ a K-Means clustering algorithm to group similar assets based on their features.
+   - For each month, fit the K-Means algorithm to the data to identify clusters.
+
+7. **Select assets based on the cluster and form a portfolio based on Efficient Frontier max Sharpe ratio optimization**:
+   - Choose assets from each cluster and form portfolios based on the Efficient Frontier, optimizing for maximum Sharpe ratio.
+   - Utilize techniques like mean-variance optimization to construct portfolios.
+
+8. **Visualize Portfolio returns and compare to SP500 returns**:
+   - Visualize the returns of the constructed portfolios over time.
+   - Compare the portfolio returns with the returns of the SP500 index to evaluate performance.
+
+9. **Build a trading bot to paper trade with these results**:
+   - Develop a trading bot that leverages the analyzed data and portfolio strategies to paper trade in simulated market conditions in Alpaca.
+   - Test the trading bot's performance against historical data and refine its strategies accordingly.
+
 ## Parameters Used to Optimize Model
 
 ### GARCH (Generalized Autoregressive Conditional Heteroskedasticity)
@@ -41,7 +60,7 @@ GARCH is a statistical model used to analyze and forecast time series data with 
 
 - **Volatility Persistence**: GARCH models capture the tendency of volatility to persist over time. High volatility periods are likely to be followed by more high volatility, and vice versa.
 
-- **Impact of Shocks**: GARCH models distinguish between the short-term impact of shocks (captured by \( \varepsilon_{t-i}^2 \)) and the long-term impact (captured by \( \sigma_{t-j}^2 \)) on volatility.
+- **Impact of Shocks**: GARCH models distinguish between the short-term impact of shocks and the long-term impact on volatility.
 
 - **Forecasting Volatility**: GARCH models can be used to forecast future volatility based on past data. This is particularly useful for risk management and derivative pricing in financial markets.
 
@@ -85,8 +104,3 @@ Bollinger Bands are a technical analysis tool introduced by John Bollinger. They
  Higher ATR values indicate greater price volatility, while lower values suggest less volatility. Traders use ATR to gauge the volatility of an asset. Higher ATR values may indicate potential trading opportunities for strategies that capitalize on volatility, such as trend-following or breakout trading.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-usage
-
