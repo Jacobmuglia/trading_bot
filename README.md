@@ -1,5 +1,4 @@
 <a name="readme-top"></a>
-
 <details>
  <summary>Table of Contents</summary>
   <ol>
@@ -20,6 +19,9 @@
    ```sh
    npm install pandas, numpy, matplotlib, statsmodels, pandas_datareader, datetime, yfinance, sklearn, PyPortfolioOpt
    ```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 <!-- ABOUT THE PROJECT -->
 # About the project
 
@@ -27,7 +29,7 @@
 
 The purpose of this project is to use unsupervised machine learning in python to generate a trading strategy. This strategy will be backtested and used to trade with a paper-trading brokerage acount.
 
-1. **Download/Load SP500 stocks prices data**:
+1. **Download SP500 stocks prices data**:
    - Utilize Yahoo Finance API to download stock price data for SP500 stocks.
 
 2. **Calculate different features and indicators on each stock**:
@@ -45,19 +47,28 @@ The purpose of this project is to use unsupervised machine learning in python to
 
 6. **For each month fit a K-Means Clustering Algorithm**:
    - Employ a K-Means clustering algorithm to group similar assets based on their features.
-   - For each month, fit the K-Means algorithm to the data to identify clusters.
+   - For each month, fit the K-Means algorithm to the data to identify clusters. These clusters are preselected and refined to optimize clustering
+
+![KMeans Clustering](images/Clustering.png)
 
 7. **Select assets based on the cluster and form a portfolio based on Efficient Frontier max Sharpe ratio optimization**:
    - Choose assets from each cluster and form portfolios based on the Efficient Frontier, optimizing for maximum Sharpe ratio.
-   - Utilize techniques like mean-variance optimization to construct portfolios.
+
+   - By inspection, we can see that cluster 3 is most likely to outperform. We will select this basket of stocks for our strategy: 
+
+![KMeans Clustering](images/MonthlyCusters.png)
 
 8. **Visualize Portfolio returns and compare to SP500 returns**:
    - Visualize the returns of the constructed portfolios over time.
    - Compare the portfolio returns with the returns of the SP500 index to evaluate performance.
 
+![Sp500 vs unsupervised learning](images/SP500.png)  
+
 9. **Build a trading bot to paper trade with these results**:
    - Develop a trading bot that leverages the analyzed data and portfolio strategies to paper trade in simulated market conditions in Alpaca.
    - Test the trading bot's performance against historical data and refine its strategies accordingly.
+
+![Sp500 vs unsupervised learning](images/SP500.png)   
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
