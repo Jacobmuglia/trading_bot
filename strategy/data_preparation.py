@@ -4,10 +4,9 @@ import pandas_ta
 import statsmodels.api as sm
 import pandas_datareader.data as web
 from statsmodels.regression.rolling import RollingOLS
-from data_preparation import getdata
+from data_preparation import data
 
 #get SP500 data and filter for top 150 trading volume
-data = getdata('https://en.wikipedia.org/wiki/List_of_S%26P_500_companies')
 data['dollar_volume'] = (data.loc[:, 'dollar_volume'].unstack('ticker').rolling(5*12, min_periods=12).mean().stack())
 data['dollar_vol_rank'] = (data.groupby('date')['dollar_volume'].rank(ascending=False))
 data = data[data['dollar_vol_rank']<150].drop(['dollar_volume', 'dollar_vol_rank'], axis=1)
